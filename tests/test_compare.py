@@ -1,4 +1,3 @@
-import json
 import unittest
 
 from jsonl_diff.compare import compare_records, parse_records
@@ -55,6 +54,12 @@ class SnapshotTests(unittest.TestCase):
             parse_records('{"id":')
         with self.assertRaises(ValueError):
             parse_records("", " ")
+
+    def test_unicode_separators_inside_json_strings_are_not_record_boundaries(self):
+        for separator in ("\u2028", "\u0085"):
+            with self.subTest(separator=repr(separator)):
+                row = '{"id":"a","text":"before' + separator + 'after"}'
+                self.assertEqual(parse_records(row)["a"]["text"], "before" + separator + "after")
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ def parse_records(text: str, key: str = "id") -> dict[str, dict]:
     if not isinstance(key, str) or not key.strip():
         raise ValueError("key must be a nonblank field name")
     records = {}
-    for line_number, line in enumerate(text.splitlines(), 1):
+    for line_number, line in enumerate(text.split("\n"), 1):
         if not line.strip():
             continue
         try:

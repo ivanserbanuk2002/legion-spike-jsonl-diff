@@ -11,7 +11,7 @@ The synthetic example reports added `c`, removed `b`, and a status change for `a
 
 `--key eventId` chooses a field other than the default `id`. Each nonblank line must be an object with a unique nonblank string key. Keys are case-sensitive and are not trimmed. Missing or duplicate keys and nonfinite numbers are rejected with line numbers. Blank lines are skipped.
 
-The JSON report lists added/removed keys, changed top-level field names and counts. It does not include record values. Object member order is ignored; arrays retain their order. Parsed values are compared using JSON serialization, so `1` and `1.0` differ, as do `true` and `1`. JSON object members use the standard decoder's last-value behavior for repeated field names.
+The JSON report lists added/removed keys, changed top-level field names and counts. It does not include full records or changed-field values. Object member order is ignored; arrays retain their order. Parsed values are compared using JSON serialization, so `1` and `1.0` differ, as do `true` and `1`. JSON object members use the standard decoder's last-value behavior for repeated field names. Unicode separators inside strings do not start a new record.
 
 Repeat `--ignore-field` to exclude volatile top-level fields from comparison. This does not suppress added/removed records or change the input files. Nested changes report their containing top-level field. Added keys follow right-file order; removed and changed keys follow left-file order.
 
