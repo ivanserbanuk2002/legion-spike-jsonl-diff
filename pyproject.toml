@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "legion-spike-jsonl-diff"
+version = "0.1.0"
+description = "Compare local JSONL snapshots by a unique record key"
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.scripts]
+jsonl-diff = "jsonl_diff.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
